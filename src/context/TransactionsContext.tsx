@@ -1,25 +1,49 @@
-import { createContext, useEffect, useState } from "react";
-import { api } from "../services/api";
-import { Transactions } from "../types/Transactions";
+import { createContext, ReactNode, useEffect, useState } from "react";
+import { api } from '../services/api'
 
-interface TransactionsProviderProps {
-  children: React.ReactNode;
+interface Transaction {
+  id: number;
+  title: string;
+  amount: number;
+  type: string;
+  category: string;
+  createdAt: string;
 }
 
-export const TransactionsContext = createContext<Transactions[]>([]);
+type TransactionInput = Omit<Transaction, 'id' | 'createdAt'>;
+
+interface TransactionsProviderProps {
+  children: ReactNode;
+}
+
+interface TransactionsContextData {
+  transactions: Transaction[];
+  createTransaction: (transaction: TransactionInput) => void;
+
+}
+
+export const TransactionsContext = createContext<TransactionsContextData>(
+  {} as TransactionsContextData
+);
 
 export function TransactionsProvider({ children }: TransactionsProviderProps) {
-  const [transactions, setTransactions] = useState<Transactions[]>([]);
+  const [transactions, setTransactions] = useState<Transaction[]>([]);
 
   useEffect(() => {
-    api
-      .get("/transactions")
-      .then((response) => setTransactions(response.data.transactions));
+    api.get('transactions')
+      .then(response => setTransactions(response.data.transactions))
   }, []);
 
+  function createTransaction(transaction: TransactionInput) {
+    api.post('/transactions', transaction)
+  }
+
   return (
-    <TransactionsContext.Provider value={transactions}>
+    <TransactionsContext.Provider value={{
+      transactions,
+      createTransaction
+    }}>
       {children}
     </TransactionsContext.Provider>
-  );
+  )
 }
