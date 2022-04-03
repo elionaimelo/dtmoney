@@ -8,7 +8,9 @@
 </p>
 
 
-## ⛏️ Built Using <a name = "built_using"></a>
+## ⛏️ Ferramentas usadas <a name = "built_using"></a>
 
 - [MirageJS ](https://miragejs.com/) - FakeAPI
 - [React](https://pt-br.reactjs.org/) - Web Framework
+- [Styled Components](https://styled-components.com/) - CSS in JS
+- [Context API](https://pt-br.reactjs.org/docs/context.html) 
