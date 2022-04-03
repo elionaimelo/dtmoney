@@ -1,6 +1,6 @@
 <p align="center">
   <a href="" rel="noopener">
- <img width=220px hsrc="https://raw.githubusercontent.com/elionaimelo/dtmoney/master/src/assets/logo.svg" alt="Project logo"></a>
+ <img width=220px src="https://raw.githubusercontent.com/elionaimelo/dtmoney/master/src/assets/logo.svg" alt="Project logo"></a>
 </p>
 
 <p align="center">
